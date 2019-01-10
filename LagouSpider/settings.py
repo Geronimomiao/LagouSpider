@@ -9,6 +9,16 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
+# 将 路径 加入到 python path 中 引包方便
+import os, sys
+# 0 优先从当前路径找
+# sys.path.insert(0, '/Users/wsm/PycharmProjects/LagouSpider/LagouSpider')
+
+# project_dir = os.path.abspath(os.path.dirname(__file__))
+# BASE_DIR = os.path.dirname(project_dir)
+# sys.path.insert(0, os.path.join(BASE_DIR, 'LagouSpider'))
+
+
 BOT_NAME = 'LagouSpider'
 
 SPIDER_MODULES = ['LagouSpider.spiders']
@@ -19,7 +29,7 @@ NEWSPIDER_MODULE = 'LagouSpider.spiders'
 #USER_AGENT = 'LagouSpider (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
@@ -88,3 +98,5 @@ ROBOTSTXT_OBEY = True
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
+
+

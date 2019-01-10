@@ -1,0 +1,4 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/
+LagouSpider/__pycache__/
+LagouSpider/spiders/__pycache__/

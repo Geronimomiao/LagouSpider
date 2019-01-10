@@ -14,4 +14,4 @@ __author__ = 'wsm'
 
 from scrapy.cmdline import execute
 
-execute(["scrapy", "crawl", "jobbole"])
+execute(["scrapy", "crawl", "lagou"])
