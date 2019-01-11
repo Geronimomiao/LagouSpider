@@ -23,6 +23,8 @@ import os, sys
 #     'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/532.1 (KHTML, like Gecko) Chrome/4.0.220.1 Safari/532.1'
 # ]
 
+# 可以配置 各种 UA 的属性
+RANDOM_UA_TYPE = 'random'
 
 BOT_NAME = 'LagouSpider'
 
@@ -68,7 +70,7 @@ ROBOTSTXT_OBEY = False
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-   'LagouSpider.middlewares.LagouspiderDownloaderMiddleware': 543,
+   'LagouSpider.middlewares.RandomUserAgentMiddleware': 543,
 }
 
 # Enable or disable extensions

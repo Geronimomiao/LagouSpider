@@ -56,6 +56,6 @@ class LagouSpider(CrawlSpider):
         # headers = {
         #     "User-Agent": random_agent
         # }
-        return [scrapy.Request('https://www.lagou.com', headers=headers)]
+        return [scrapy.Request('https://www.lagou.com')]
 
 
