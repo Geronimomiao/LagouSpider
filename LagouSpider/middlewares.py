@@ -7,6 +7,7 @@
 
 from scrapy import signals
 from fake_useragent import UserAgent
+from LagouSpider.tools.crawl_xici_ip import GetIP
 
 class LagouspiderSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
@@ -122,5 +123,11 @@ class RandomUserAgentMiddleware(object):
 
         random_agent = get_ua()
         request.headers.setdefault('User-Agent', get_ua())
-        request.meta['proxy'] = 'http://121.61.32.209:9999'
 
+
+class RandomProxyMiddleware(object):
+    # 动态设置 IP 代理
+    def process_request(self, request, spider):
+        # request.meta['proxy'] = 'http://121.61.32.209:9999'
+        get_ip = GetIP()
+        request.meta['proxy'] = get_ip.get_random_ip()

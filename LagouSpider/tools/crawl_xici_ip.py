@@ -93,9 +93,13 @@ class GetIP(object):
             ip = ip_info[0]
             port = ip_info[1]
 
-            self.judge_ip(ip, port)
+            judge_re = self.judge_ip(ip, port)
+            if judge_re:
+                return 'http://{0}:{1}'.format(ip, port)
+            else:
+                return self.get_random_ip()
 
 # print(crawl_ips())
 
-get_ip = GetIP()
-get_ip.get_random_ip()
+# get_ip = GetIP()
+# get_ip.get_random_ip()
