@@ -11,10 +11,10 @@ class LagouSpider(CrawlSpider):
     name = 'lagou'
     allowed_domains = ['www.lagou.com']
     start_urls = ['https://www.lagou.com/jobs/4325051.html']
-    # custom_settings = {
-    #     降低网站 爬取速度
-    #     'DOWNLOAD_DELAY': 2
-    # }
+    custom_settings = {
+        # 降低网站 爬取速度
+        'DOWNLOAD_DELAY': 0.25
+    }
 
 
     rules = (
