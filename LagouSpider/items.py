@@ -10,6 +10,7 @@ from scrapy.loader import ItemLoader
 from scrapy.loader.processors import TakeFirst, MapCompose, Join
 from w3lib.html import remove_tags
 
+
 def remove_splash(value):
     # 过滤 /
     return value.replace('/', '')

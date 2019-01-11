@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-import scrapy, datetime
+import scrapy, datetime, random
 from scrapy.linkextractors import LinkExtractor
 from scrapy.spiders import CrawlSpider, Rule
 from LagouSpider.items import LagouJobItemLoder, LagouJobItem
 from LagouSpider.uitl.common import get_md5
+# from LagouSpider.settings import user_agent_list
 
 
 class LagouSpider(CrawlSpider):
@@ -14,9 +15,7 @@ class LagouSpider(CrawlSpider):
     #     降低网站 爬取速度
     #     'DOWNLOAD_DELAY': 2
     # }
-    headers = {
-        "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3100.0 Safari/537.36'
-    }
+
 
     rules = (
         Rule(LinkExtractor(allow=r'zhaopin/.*'), follow=True),
@@ -50,9 +49,13 @@ class LagouSpider(CrawlSpider):
 
 
     def start_requests(self):
-        # scrapy 框架 所以操作都是异步的
-        # 如果不写 callback 默认调用 parse
-        # callback 不能加括号 加括号 会调用给
-        return [scrapy.Request('https://www.lagou.com', headers=self.headers)]
+        # 在发起请求 时生成 user_agent
+        # 藕合性过高
+        # random_index = random.randint(0, len(user_agent_list) - 1)
+        # random_agent = user_agent_list[random_index]
+        # headers = {
+        #     "User-Agent": random_agent
+        # }
+        return [scrapy.Request('https://www.lagou.com', headers=headers)]
 
 

@@ -18,6 +18,11 @@ import os, sys
 # BASE_DIR = os.path.dirname(project_dir)
 # sys.path.insert(0, os.path.join(BASE_DIR, 'LagouSpider'))
 
+# user_agent_list = [
+#     'Mozilla/5.0 (X11; Linux i686) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11',
+#     'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/532.1 (KHTML, like Gecko) Chrome/4.0.220.1 Safari/532.1'
+# ]
+
 
 BOT_NAME = 'LagouSpider'
 
@@ -62,9 +67,9 @@ ROBOTSTXT_OBEY = False
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'LagouSpider.middlewares.LagouspiderDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+   'LagouSpider.middlewares.LagouspiderDownloaderMiddleware': 543,
+}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
