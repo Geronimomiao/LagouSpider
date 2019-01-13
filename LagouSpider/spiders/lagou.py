@@ -6,6 +6,14 @@ from LagouSpider.items import LagouJobItemLoder, LagouJobItem
 from LagouSpider.uitl.common import get_md5
 # from LagouSpider.settings import user_agent_list
 
+# 信号
+from scrapy.xlib.pydispatch import dispatcher
+from scrapy import signals
+
+
+import time
+from selenium import webdriver
+from scrapy.http import HtmlResponse
 
 class LagouSpider(CrawlSpider):
     name = 'lagou'
@@ -22,6 +30,16 @@ class LagouSpider(CrawlSpider):
         Rule(LinkExtractor(allow=r'gongsi/j\d+.*'), follow=True),
         Rule(LinkExtractor(allow=r'jobs/\d+.html'), callback='parse_job', follow=True),
     )
+
+    def __init__(self):
+        self.browser = webdriver.Chrome(executable_path='/Users/wsm/Downloads/chromedriver')
+        super(LagouSpider, self).__init__()
+        dispatcher.connect(self.spider_closed, signals.spider_closed)
+
+    def spider_closed(self, spider):
+        # 当爬虫 退出时 关闭 浏览器
+        print('spider closed')
+        self.browser.quit()
 
     def parse_job(self, response):
         # 解析 拉勾网的职位

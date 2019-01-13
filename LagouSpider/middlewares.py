@@ -131,3 +131,35 @@ class RandomProxyMiddleware(object):
         # request.meta['proxy'] = 'http://121.61.32.209:9999'
         get_ip = GetIP()
         request.meta['proxy'] = get_ip.get_random_ip()
+
+
+import time
+from selenium import webdriver
+from scrapy.http import HtmlResponse
+
+class JSPageMiddleware(object):
+    # 初始化 可以 在 spider 中做 否则当 spider 关闭时 chrome 不会 关闭
+    # def __init__(self):
+    #     self.browser = webdriver.Chrome(executable_path='/Users/wsm/Downloads/chromedriver')
+    #     super(JSPageMiddleware, self).__init__()
+
+    # 抓去 动态加载 页面的数据
+    def process_request(self, request, spider):
+        if spider.name == 'lagou':
+            # chrome_opt = webdriver.ChromeOptions()
+            # # 1允许所有图片；2阻止所有图片；3阻止第三方服务器图片
+            # prefs = {
+            #     'profile.default_content_setting_values': {
+            #         'images': 2
+            #     }
+            # }
+            # chrome_opt.add_experimental_option('prefs', prefs)
+            #
+            # browser = webdriver.Chrome(executable_path='/Users/wsm/Downloads/chromedriver', chrome_options=chrome_opt)
+            spider.browser.get(request.url)
+            time.sleep(1)
+            print("访问:{0}".format(request.url))
+            # 当 scrapy 遇到 HtmlResponse 会直接返回 不会再将 res 交给 下载器
+            return HtmlResponse(url=spider.browser.current_url, body=spider.browser.page_source, encoding='utf8', request=request)
+
+
